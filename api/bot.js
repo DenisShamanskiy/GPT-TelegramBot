@@ -3,15 +3,18 @@ import { message } from "telegraf/filters";
 import { code } from "telegraf/format";
 import * as dotenv from "dotenv";
 dotenv.config();
-import { ogg } from "./ogg.js";
-import { openai } from "./openai.js";
-import { removeFile } from "./utils.js";
-import { initCommand, processTextToChat, INITIAL_SESSION } from "./logic.js";
+import { ogg } from "../src/ogg.js";
+import { openai } from "../src/openai.js";
+import { removeFile } from "../src/utils.js";
+import {
+  initCommand,
+  processTextToChat,
+  INITIAL_SESSION,
+} from "../src/logic.js";
 
-// console.log(config.get("TEST_ENV"));
-
+console.log(process.env.TELEGRAM_TOKEN);
 const bot = new Telegraf(process.env.TELEGRAM_TOKEN);
-
+console.log(bot);
 bot.use(session());
 
 bot.command("new", initCommand);
