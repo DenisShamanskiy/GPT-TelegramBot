@@ -1,20 +1,16 @@
 import { Telegraf, session } from "telegraf";
 import { message } from "telegraf/filters";
 import { code } from "telegraf/format";
-import * as dotenv from "dotenv";
-dotenv.config();
-import { ogg } from "../src/ogg.js";
-import { openai } from "../src/openai.js";
-import { removeFile } from "../src/utils.js";
-import {
-  initCommand,
-  processTextToChat,
-  INITIAL_SESSION,
-} from "../src/logic.js";
+import config from "config";
+import { ogg } from "./ogg.js";
+import { openai } from "./openai.js";
+import { removeFile } from "./utils.js";
+import { initCommand, processTextToChat, INITIAL_SESSION } from "./logic.js";
 
-console.log(process.env.TELEGRAM_TOKEN);
-const bot = new Telegraf(process.env.TELEGRAM_TOKEN);
-console.log(bot);
+// console.log(config.get("TEST_ENV"));
+
+const bot = new Telegraf(config.get("TELEGRAM_TOKEN"));
+
 bot.use(session());
 
 bot.command("new", initCommand);
@@ -42,6 +38,7 @@ bot.on(message("voice"), async (ctx) => {
 });
 
 bot.on(message("text"), async (ctx) => {
+  console.log(ctx);
   ctx.session ??= INITIAL_SESSION;
   try {
     await ctx.reply(code("Сообщение принял. Жду ответ от сервера..."));
@@ -55,3 +52,5 @@ bot.launch();
 
 process.once("SIGINT", () => bot.stop("SIGINT"));
 process.once("SIGTERM", () => bot.stop("SIGTERM"));
+
+export default bot;
