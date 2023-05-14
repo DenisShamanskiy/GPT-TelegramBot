@@ -1,4 +1,4 @@
-import bot from "./main.js";
+import bot from "../src/main.js";
 
 async function handler(req, res) {
   try {
