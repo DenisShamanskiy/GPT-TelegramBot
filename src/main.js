@@ -16,6 +16,7 @@ bot.command("new", initCommand);
 bot.command("start", initCommand);
 
 bot.on(message("voice"), async (ctx) => {
+  console.log(ctx);
   ctx.session ??= INITIAL_SESSION;
   try {
     await ctx.reply(code("Сообщение принял. Жду ответ от сервера..."));
