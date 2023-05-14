@@ -1,0 +1,9 @@
+{
+  "functions": {
+    "api/telegram": {
+      "memory": 512,
+      "runtime": "nodejs16"
+    }
+  },
+  "routes": [{ "src": "/api/telegram", "dest": "/api/telegram" }]
+}
