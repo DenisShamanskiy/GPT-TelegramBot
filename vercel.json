@@ -2,7 +2,7 @@
   "functions": {
     "api/telegram": {
       "memory": 512,
-      "runtime": "nodejs16"
+      "runtime": "nodejs14"
     }
   },
   "routes": [{ "src": "/api/telegram", "dest": "/api/telegram" }]
