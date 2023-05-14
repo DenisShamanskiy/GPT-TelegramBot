@@ -1,8 +1,7 @@
 {
   "functions": {
     "api/telegram": {
-      "memory": 512,
-      "runtime": "@vercel/node"
+      "memory": 512
     }
   },
   "routes": [{ "src": "/api/telegram", "dest": "/api/telegram" }]
